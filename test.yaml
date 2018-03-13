@@ -29,6 +29,25 @@ spec:
             value: "mongodb://mongodb-mongodb"
           - name: RABBITMQHOST
             value: amqp://user:AIidwvOLsL@t17rabbitmq:5672  
+
+      - image: shanepeckham/rabbitmqlistenerack:v6
+        name: order-mq-ack
+        env:
+          - name: TEAMNAME
+            value: "team17"
+          - name: RABBITMQHOST
+            value: amqp://user:AIidwvOLsL@t17rabbitmq:5672
+
+      - image: shanepeckham/fulfillorderack:v6
+        name: order-fulfill-ack
+        ports:
+          - containerPort: 8080
+        env:
+          - name: TEAMNAME
+            value: "team17"
+          - name: MONGOHOST
+            value: "mongodb://mongodb-mongodb"
+
         resources: {}
 status: {}
 ---
