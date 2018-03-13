@@ -1,0 +1,29 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    run: order-mq-ack
+  name: order-mq-ack
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: order-mq-ack
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        run: order-mq-ack
+    spec:
+      containers:
+      - image: shanepeckham/rabbitmqlistenerack:v6
+        name: order-mq-ack
+        env:
+          - name: TEAMNAME
+            value: "team17"
+          - name: RABBITMQHOST
+            value: amqp://user:AIidwvOLsL@t17rabbitmq:5672
+        resources: {}
+status: {}

@@ -1,0 +1,31 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    run: fulfillorder
+  name: fulfillorder
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: fulfillorder
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        run: fulfillorder
+    spec:
+      containers:
+      - image: shanepeckham/fulfillorderack:v6
+        name: fulfillorder
+        ports:
+        - containerPort: 8080
+        env:
+          - name: TEAMNAME
+            value: "team17"
+          - name: MONGOHOST
+            value: "mongodb://mongodb-mongodb"
+        resources: {}
+status: {}
