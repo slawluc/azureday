@@ -29,7 +29,7 @@ spec:
               value: "mongodb://mongodb-mongodb"
             - name: RABBITMQHOST
               value: amqp://user:AIidwvOLsL@t17rabbitmq:5672
-        resources: {}
+          resources: {}
 status: {}
 ---
 apiVersion: extensions/v1beta1
@@ -60,7 +60,7 @@ spec:
                   - name: RABBITMQHOST
                     value: amqp://user:AIidwvOLsL@t17rabbitmq:5672
 
-        resources: {}
+          resources: {}
 status: {}
 ---
 apiVersion: extensions/v1beta1
@@ -93,7 +93,7 @@ spec:
             - name: MONGOHOST
               value: "mongodb://mongodb-mongodb"
 
-        resources: {}
+          resources: {}
 status: {}
 ---
 apiVersion: v1
