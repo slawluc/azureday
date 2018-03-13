@@ -84,14 +84,14 @@ spec:
     spec:
       containers:
         - image: shanepeckham/fulfillorderack:v6
-               name: fulfillorder
-               ports:
-                 - containerPort: 8080
-               env:
-                 - name: TEAMNAME
-                   value: "team17"
-                 - name: MONGOHOST
-                   value: "mongodb://mongodb-mongodb"
+          name: fulfillorder
+          ports:
+            - containerPort: 8080
+          env:
+            - name: TEAMNAME
+              value: "team17"
+            - name: MONGOHOST
+              value: "mongodb://mongodb-mongodb"
 
         resources: {}
 status: {}
