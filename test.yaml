@@ -29,7 +29,7 @@ spec:
             value: "mongodb://mongodb-mongodb"
           - name: RABBITMQHOST
             value: amqp://user:AIidwvOLsL@t17rabbitmq:5672
-          resources: {}
+        resources: {}
 status: {}
 ---
 apiVersion: extensions/v1beta1
@@ -53,14 +53,13 @@ spec:
     spec:
       containers:
       - image: shanepeckham/rabbitmqlistenerack:v6
-              name: order-mq-ack
-              env:
-                - name: TEAMNAME
-                  value: "team17"
-                - name: RABBITMQHOST
-                  value: amqp://user:AIidwvOLsL@t17rabbitmq:5672
-
-          resources: {}
+        name: order-mq-ack
+        env:
+          - name: TEAMNAME
+            value: "team17"
+          - name: RABBITMQHOST
+            value: amqp://user:AIidwvOLsL@t17rabbitmq:5672
+        resources: {}
 status: {}
 ---
 apiVersion: extensions/v1beta1
@@ -86,14 +85,13 @@ spec:
       - image: shanepeckham/fulfillorderack:v6
         name: fulfillorder
         ports:
-          - containerPort: 8080
+        - containerPort: 8080
         env:
           - name: TEAMNAME
             value: "team17"
           - name: MONGOHOST
             value: "mongodb://mongodb-mongodb"
-
-          resources: {}
+        resources: {}
 status: {}
 ---
 apiVersion: v1
@@ -106,4 +104,3 @@ spec:
   - port: 80
   selector:
     app: order-capture-test
-
