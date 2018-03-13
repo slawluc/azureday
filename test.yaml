@@ -26,15 +26,8 @@ spec:
           - name: TEAMNAME
             value: "team17"
           - name: MONGOHOST
-            value: "mongodb://mongo.team17"
+            value: "mongodb://mongodb-mongodb"
           - name: RABBITMQHOST
-            value: amqp://notsetyet:5672
-
-      - image: mongo
-        name: mongo
-        ports:
-          - containerPort: 27017
-            hostPort: 27017
-
+            value: amqp://t17rabbit:5672
         resources: {}
 status: {}
