@@ -21,32 +21,78 @@ spec:
       - image: shanepeckham/captureorderack:v6
         name: order-capture-test
         ports:
-          - containerPort: 8080   
-        env:
-          - name: TEAMNAME
-            value: "team17"
-          - name: MONGOHOST
-            value: "mongodb://mongodb-mongodb"
-          - name: RABBITMQHOST
-            value: amqp://user:AIidwvOLsL@t17rabbitmq:5672  
-
-      - image: shanepeckham/rabbitmqlistenerack:v6
-        name: order-mq-ack
-        env:
-          - name: TEAMNAME
-            value: "team17"
-          - name: RABBITMQHOST
-            value: amqp://user:AIidwvOLsL@t17rabbitmq:5672
-
-      - image: shanepeckham/fulfillorderack:v6
-        name: order-fulfill-ack
-        ports:
           - containerPort: 8080
         env:
           - name: TEAMNAME
             value: "team17"
           - name: MONGOHOST
             value: "mongodb://mongodb-mongodb"
+          - name: RABBITMQHOST
+            value: amqp://user:AIidwvOLsL@t17rabbitmq:5672
+
+        resources: {}
+status: {}
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    run: order-mq-ack
+  name: order-mq-ack
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: order-mq-ack
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        run: order-mq-ack
+    spec:
+      containers:
+      - image: shanepeckham/rabbitmqlistenerack:v6
+              name: order-mq-ack
+              env:
+                - name: TEAMNAME
+                  value: "team17"
+                - name: RABBITMQHOST
+                  value: amqp://user:AIidwvOLsL@t17rabbitmq:5672
+
+        resources: {}
+status: {}
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    run: order-fulfill-ack
+  name: order-fulfill-ack
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: order-fulfill-ack
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        run: order-fulfill-ack
+    spec:
+      containers:
+      - image: shanepeckham/fulfillorderack:v6
+             name: order-fulfill-ack
+             ports:
+               - containerPort: 8080
+             env:
+               - name: TEAMNAME
+                 value: "team17"
+               - name: MONGOHOST
+                 value: "mongodb://mongodb-mongodb"
 
         resources: {}
 status: {}
@@ -61,3 +107,4 @@ spec:
   - port: 80
   selector:
     app: order-capture-test
+
