@@ -28,6 +28,6 @@ spec:
           - name: MONGOHOST
             value: "mongodb://mongodb-mongodb"
           - name: RABBITMQHOST
-            value: amqp://t17rabbitmq:5672
+            value: amqp://user:AIidwvOLsL@t17rabbitmq:5672
         resources: {}
 status: {}
