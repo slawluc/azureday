@@ -29,7 +29,6 @@ spec:
               value: "mongodb://mongodb-mongodb"
             - name: RABBITMQHOST
               value: amqp://user:AIidwvOLsL@t17rabbitmq:5672
-
         resources: {}
 status: {}
 ---
