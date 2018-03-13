@@ -69,23 +69,23 @@ kind: Deployment
 metadata:
   creationTimestamp: null
   labels:
-    run: order-fulfill-ack
-  name: order-fulfill-ack
+    run: fulfillorder
+  name: fulfillorder
 spec:
   replicas: 1
   selector:
     matchLabels:
-      run: order-fulfill-ack
+      run: fulfillorder
   strategy: {}
   template:
     metadata:
       creationTimestamp: null
       labels:
-        run: order-fulfill-ack
+        run: fulfillorder
     spec:
       containers:
       - image: shanepeckham/fulfillorderack:v6
-             name: order-fulfill-ack
+             name: fulfillorder
              ports:
                - containerPort: 8080
              env:
